@@ -7,53 +7,72 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nihilisticiconoclast/cuddly-lamp@main/assets/tokens.css">
 <style>
 *{box-sizing:border-box;}
-:root{
-  --paper:#EDE7D3; --paper2:#E5DCC3; --ink:#4A3823;
-  --teal:#3E7C8C; --amber:#E0922B; --route:#C0432B;
-}
+:root{ --paper2:#E5DCC3; }
 html,body{margin:0;background:var(--paper);color:var(--ink);}
 body{font-family:'Public Sans',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
 .wrap{max-width:1000px;margin:0 auto;padding:34px 20px 64px;}
+
+.masthead{display:flex;justify-content:flex-end;margin-bottom:20px;}
+.masthead .sig{display:block;width:42px;height:42px;}
+.masthead .sig svg{width:100%;height:100%;}
+
 h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:clamp(28px,5.2vw,46px);line-height:1.04;margin:0 0 6px;letter-spacing:-0.012em;}
 .sub{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.09em;text-transform:uppercase;color:rgba(74,56,35,0.7);margin:0 0 22px;}
 .lede{font-size:16.5px;max-width:66ch;margin:0 0 24px;}
+
 .controls{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:flex-end;margin:0 0 16px;padding:16px;background:var(--paper2);border:1px solid var(--ink);}
 .ctrl{display:flex;flex-direction:column;gap:7px;}
 .ctrl > label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(74,56,35,0.78);}
+
 button{font-family:'Public Sans',sans-serif;font-size:14px;font-weight:600;color:var(--paper);background:var(--ink);border:1px solid var(--ink);padding:11px 18px;cursor:pointer;border-radius:0;transition:background .12s,color .12s,border-color .12s;}
 button:hover{background:var(--route);border-color:var(--route);}
 button.ghostbtn{background:var(--paper);color:var(--ink);font-weight:500;}
 button.ghostbtn:hover{background:var(--ink);color:var(--paper);}
+
 .seg{display:inline-flex;border:1px solid var(--ink);}
 .seg button{background:var(--paper);color:var(--ink);border:none;border-right:1px solid var(--ink);font-weight:500;padding:10px 14px;}
 .seg button:last-child{border-right:none;}
 .seg button.active{background:var(--ink);color:var(--paper);}
 .seg button:hover:not(.active){background:rgba(74,56,35,0.10);}
-input[type=range]{accent-color:var(--teal);width:160px;height:22px;}
+
+input[type=range]{accent-color:var(--incident,#3E7C8C);width:160px;height:22px;}
 .stepval{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:13px;min-width:2.4em;display:inline-block;}
+
 .figwrap{border:1px solid var(--ink);outline:1px solid var(--ink);outline-offset:4px;background:var(--paper);margin:10px 0;}
 .canvas-h{height:clamp(450px,64vw,650px);}
 canvas{display:block;width:100%;height:100%;cursor:pointer;}
+
 .stats{display:flex;flex-wrap:wrap;gap:12px 28px;font-family:'IBM Plex Mono',monospace;margin:18px 0 4px;padding:13px 0;border-top:1px solid rgba(74,56,35,0.25);border-bottom:1px solid rgba(74,56,35,0.25);}
 .stat b{display:block;font-size:10.5px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:rgba(74,56,35,0.62);margin-bottom:2px;}
 .stat span{font-size:16px;}
 .stat.runs{margin-left:auto;text-align:right;}
+
+#doodle{pointer-events:none;}
+
 .explain{margin:30px 0 0;font-size:15.5px;max-width:72ch;}
 .explain h2{font-family:'Fraunces',serif;font-weight:600;font-size:21px;margin:26px 0 8px;letter-spacing:-0.01em;}
 .explain p{margin:0 0 13px;}
 .explain code{font-family:'IBM Plex Mono',monospace;font-size:0.9em;background:rgba(74,56,35,0.08);padding:1px 5px;}
 .codeblock{font-family:'IBM Plex Mono',monospace;font-size:13px;background:var(--ink);color:var(--paper);padding:14px 16px;overflow:auto;margin:10px 0 0;white-space:pre;}
-.foot{margin-top:32px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.04em;color:rgba(74,56,35,0.58);border-top:1px solid rgba(74,56,35,0.25);padding-top:14px;}
+
+.foot{margin-top:32px;display:flex;align-items:center;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.04em;color:rgba(74,56,35,0.58);border-top:1px solid rgba(74,56,35,0.25);padding-top:14px;}
+.foot-mark{display:block;width:28px;height:28px;flex-shrink:0;opacity:0.55;}
+.foot-mark svg{width:100%;height:100%;}
+
 @media(max-width:560px){input[type=range]{width:140px;}.controls{gap:12px 16px;}}
 </style>
 </head>
-<body>
+<body data-seed="football-flip-normal-by-addition">
 <div class="wrap">
+
+  <div class="masthead"><span class="sig" id="sig"></span></div>
+
   <h1>Normal by addition</h1>
   <p class="sub">Statistical Rethinking · §4.1.1</p>
-  <p class="lede">A thousand people line up on the halfway line of a football pitch. Each flips a coin sixteen times — heads, step left; tails, step right — then stands still. Measure everyone's distance from the line and a bell curve appears, every single time. Nothing about the curve is built into a coin; it emerges from the summing.</p>
+  <p class="lede">A thousand people line up on the halfway line of a football pitch. Each flips a coin sixteen times — heads, step left; tails, step right — then stands still. Measure everyone’s distance from the line and a bell curve appears, every single time. Nothing about the curve is built into a coin; it emerges from the summing.</p>
 
   <div class="controls">
     <div class="ctrl">
@@ -73,7 +92,11 @@ canvas{display:block;width:100%;height:100%;cursor:pointer;}
     </div>
     <div class="ctrl">
       <label>&nbsp;</label>
-      <button id="clearbtn" class="ghostbtn">Clear curves</button>
+      <button id="run10btn" class="ghostbtn" title="Run 10 rounds instantly and stack the results">Stack ×10</button>
+    </div>
+    <div class="ctrl">
+      <label>&nbsp;</label>
+      <button id="clearbtn" class="ghostbtn">Clear all</button>
     </div>
   </div>
 
@@ -84,25 +107,48 @@ canvas{display:block;width:100%;height:100%;cursor:pointer;}
     <div class="stat"><b>Empirical SD</b><span id="s-sd">—</span></div>
     <div class="stat"><b>Predicted σ</b><span id="s-sigma">—</span></div>
     <div class="stat"><b id="s-band-l">On the line</b><span id="s-band">—</span></div>
-    <div class="stat runs"><b>Runs</b><span id="s-runs">0</span></div>
+    <div class="stat runs"><b>Stacked runs</b><span id="s-runs">0</span></div>
   </div>
+
+  <div id="doodle"></div>
 
   <div class="explain">
     <h2>Why a bell?</h2>
     <p>Each flip contributes one independent ± nudge. An extreme total needs a nearly unanimous run of one face, which is rare; a middling total near zero can be reached in a huge number of ways, so it dominates. Add enough independent nudges and the histogram of totals always tends towards the same shape — the normal distribution. That is the central limit theorem doing its work, and it is why the Gaussian turns up everywhere in the chapters that follow.</p>
 
+    <h2>Stacking runs</h2>
+    <p>A single run of 1,000 walkers already looks roughly bell-shaped but jiggles; each round samples differently from the same distribution. The <em>faint</em> bars in the chart show the running average across every round you have dropped — divide the accumulated count by the number of runs and the histogram smooths out. Stack 10, 20, or 50 rounds and the faint average presses closer and closer to the red curve: that is the law of large numbers reading itself. Use <b>Stack ×10</b> to add ten rounds at once without the animation.</p>
+
     <h2>The two step models</h2>
     <p><b>Coin ±1.</b> With fixed unit steps your final position is just (rights − lefts). The number of rights is Binomial(<em>n</em>, ½), so the position is a shifted, doubled binomial — and the red curve is the de Moivre–Laplace normal approximation to it, with σ = √<em>n</em> (σ = 4 at <em>n</em> = 16). This is the binomial sitting underneath the picture.</p>
-    <p><b>Random −1…1.</b> McElreath's actual code randomises the step <em>length</em> as well: each step is drawn from Uniform(−1, 1). The sum is no longer binomial, yet it converges to the very same bell. Here Var(step) = 1/3, so σ = √(<em>n</em>/3) ≈ 2.31 at <em>n</em> = 16 — same centre, narrower spread, because the average step is shorter.</p>
+    <p><b>Random −1…1.</b> McElreath’s actual code randomises the step <em>length</em> as well: each step is drawn from Uniform(−1, 1). The sum is no longer binomial, yet it converges to the very same bell. Here Var(step) = 1/3, so σ = √(<em>n</em>/3) ≈ 2.31 at <em>n</em> = 16 — same centre, narrower spread, because the average step is shorter.</p>
     <div class="codeblock">pos &lt;- replicate( 1000 , sum( runif(16, -1, 1) ) )
 dens( pos )            # ≈ Normal( 0 , sqrt(16/3) )</div>
 
-    <h2>What this is (and isn't)</h2>
+    <h2>What this is (and isn’t)</h2>
     <p>No parameter is being estimated here and there is nothing Bayesian yet — it is a generative argument for why a Gaussian is a reasonable likelihood, and later a reasonable prior. Toggle the step model, drag the number of flips to watch the spread scale as √<em>n</em>, and re-run as many times as you like: every run hangs a fresh thousand under the same red curve.</p>
   </div>
 
-  <p class="foot">After R. McElreath — Statistical Rethinking (2nd ed.), §4.1.1, “Normal by addition”. · Tunnel</p>
+  <div class="foot">
+    <span class="foot-mark" id="sig-foot"></span>
+    After R. McElreath — Statistical Rethinking (2nd ed.), §4.1.1, “Normal by addition”. · Tunnel
+  </div>
+
 </div>
+
+<script src="https://cdn.jsdelivr.net/gh/nihilisticiconoclast/cuddly-lamp@main/assets/tunnel-figure.js"></script>
+<script>
+(function(){
+  document.getElementById('sig').innerHTML =
+    TunnelFigure.tunnelFigureSVG(null, { variant: 'mark' });
+  var seed = document.body.dataset.seed || document.title;
+  document.getElementById('doodle').innerHTML =
+    TunnelFigure.tunnelFigureSVG(seed, { variant: 'doodle' });
+  TunnelFigure.placeDoodle(document.getElementById('doodle'));
+  document.getElementById('sig-foot').innerHTML =
+    TunnelFigure.tunnelFigureSVG(null, { variant: 'mark' });
+})();
+</script>
 
 <script>
 "use strict";
@@ -125,11 +171,14 @@ const walkers = [];
 let positions = [];
 let hist = null;
 
-let phase = 'idle';            // idle | walking | dropping | done
+const allPositions = [];
+let stackedHist = null;
+let runCount = 0;
+
+let phase = 'idle';
 let walkStartT = 0, dropStartT = 0;
 let histFill = 0;
 let rafId = null;
-let runCount = 0;
 const ghosts = [];
 
 const WALK_STEP_MS = 130, DROP_MS = 700;
@@ -163,6 +212,7 @@ function initWalkers(){
     walkers.push({ yf: Math.random(), xj:(Math.random()*2-1)*0.18, cum:null, final:0, dispX:0, dropP:0 });
   }
 }
+
 function resample(){
   positions = new Array(N);
   for(let i=0;i<N;i++){
@@ -176,25 +226,33 @@ function resample(){
     w.cum = cum; w.final = s; w.dispX = s; w.dropP = 0;
     positions[i] = s;
   }
-  hist = computeHistogram();
+  hist = computeHistogram(positions);
 }
-function computeHistogram(){
+
+function computeHistogram(pos){
   let centers = [], counts, bw;
   if(mode === 'coin'){
     bw = 2; const n = steps;
     for(let v=-n; v<=n; v+=2) centers.push(v);
     counts = new Array(centers.length).fill(0);
-    for(const p of positions){ const idx = Math.round((p+n)/2); if(idx>=0 && idx<counts.length) counts[idx]++; }
+    for(const p of pos){ const idx = Math.round((p+n)/2); if(idx>=0 && idx<counts.length) counts[idx]++; }
   } else {
     const lim = X_LIMIT; const nb = 30; bw = (2*lim)/nb;
     for(let i=0;i<nb;i++) centers.push(-lim + (i+0.5)*bw);
     counts = new Array(nb).fill(0);
-    for(const p of positions){ let idx = Math.floor((p+lim)/bw); idx = clamp(idx,0,nb-1); counts[idx]++; }
+    for(const p of pos){ let idx = Math.floor((p+lim)/bw); idx = clamp(idx,0,nb-1); counts[idx]++; }
   }
   return { centers, counts, bw };
 }
 
-/* ---------- seeded contour backdrop (Tunnel terrain) ---------- */
+function computeStackedHistogram(){
+  if(allPositions.length === 0){ stackedHist = null; return; }
+  const h = computeHistogram(allPositions);
+  h.counts = h.counts.map(c => c / runCount);
+  stackedHist = h;
+}
+
+/* ---------- seeded contour backdrop ---------- */
 const SEED = 1337;
 function hashRand(i,j){
   let n = (i*374761393 + j*668265263 + SEED*982451653) | 0;
@@ -267,6 +325,7 @@ function draw(){
   drawGrid();
   drawPitch();
   if(phase !== 'done') drawWalkers();
+  drawStackedBars();
   drawBars();
   drawGhostCurves();
   drawCurrentCurve();
@@ -286,27 +345,23 @@ function drawGrid(){
 function drawPitch(){
   ctx.fillStyle = 'rgba(62,124,140,0.05)';
   ctx.fillRect(0, 0, W, pitchBottom);
-  // touchlines
   ctx.strokeStyle = 'rgba(74,56,35,0.5)'; ctx.lineWidth = 1.4;
   ctx.beginPath();
   ctx.moveTo(padL, fieldTop); ctx.lineTo(W-padR, fieldTop);
   ctx.moveTo(padL, fieldBottom); ctx.lineTo(W-padR, fieldBottom);
   ctx.stroke();
-  // centre circle + spot
   const cx = xScale(0), cy = (fieldTop+fieldBottom)/2;
   const rx = xScale(10) - xScale(0), ry = (fieldBottom-fieldTop)*0.34;
   ctx.strokeStyle = 'rgba(74,56,35,0.28)'; ctx.lineWidth = 1.2;
   ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI*2); ctx.stroke();
   ctx.fillStyle = 'rgba(74,56,35,0.5)';
   ctx.beginPath(); ctx.arc(cx, cy, 2, 0, Math.PI*2); ctx.fill();
-  // halfway line
   ctx.strokeStyle = 'rgba(74,56,35,0.55)'; ctx.lineWidth = 1.4;
   ctx.beginPath(); ctx.moveTo(cx, fieldTop); ctx.lineTo(cx, fieldBottom); ctx.stroke();
-  // captions
   ctx.font = "10px 'IBM Plex Mono',monospace"; ctx.fillStyle = 'rgba(74,56,35,0.55)';
-  ctx.textAlign = 'left';  ctx.fillText('\u2190 heads', padL+4, fieldTop-6);
-  ctx.textAlign = 'right'; ctx.fillText('tails \u2192', W-padR-4, fieldTop-6);
-  ctx.textAlign = 'center';ctx.fillText('halfway line', cx, fieldTop-6);
+  ctx.textAlign = 'left';  ctx.fillText('← heads', padL+4, fieldTop-6);
+  ctx.textAlign = 'right'; ctx.fillText('tails →', W-padR-4, fieldTop-6);
+  ctx.textAlign = 'center'; ctx.fillText('halfway line', cx, fieldTop-6);
 }
 
 function drawWalkers(){
@@ -322,6 +377,20 @@ function drawWalkers(){
   ctx.globalAlpha = 1;
 }
 
+function drawStackedBars(){
+  if(!stackedHist) return;
+  ctx.fillStyle = 'rgba(62,124,140,0.22)';
+  for(let k=0;k<stackedHist.centers.length;k++){
+    const cnt = stackedHist.counts[k];
+    if(cnt <= 0) continue;
+    const x0 = xScale(stackedHist.centers[k]-stackedHist.bw/2)+0.5;
+    const x1 = xScale(stackedHist.centers[k]+stackedHist.bw/2)-0.5;
+    const w = Math.max(1, x1-x0);
+    const h = (cnt/YMAX)*histHeight;
+    ctx.fillRect(x0, baselineY - h, w, h);
+  }
+}
+
 function drawBars(){
   if(!hist || histFill <= 0) return;
   ctx.fillStyle = '#3E7C8C';
@@ -334,9 +403,12 @@ function drawBars(){
     const w = Math.max(1, x1-x0);
     const h = (cnt/YMAX)*histHeight;
     const y = baselineY - h;
+    ctx.globalAlpha = 0.75 * histFill;
     ctx.fillRect(x0, y, w, h);
+    ctx.globalAlpha = histFill;
     ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x0+w, y); ctx.stroke();
   }
+  ctx.globalAlpha = 1;
 }
 
 function curvePath(sig, bw){
@@ -351,10 +423,12 @@ function curvePath(sig, bw){
     if(first){ ctx.moveTo(X, y); first = false; } else ctx.lineTo(X, y);
   }
 }
+
 function drawGhostCurves(){
   ctx.strokeStyle = 'rgba(74,56,35,0.18)'; ctx.lineWidth = 1;
   for(const g of ghosts){ curvePath(g.sig, g.bw); ctx.stroke(); }
 }
+
 function drawCurrentCurve(){
   if(!hist) return;
   const alpha = phase === 'done' ? 1 : (phase === 'dropping' ? histFill : 0);
@@ -366,7 +440,6 @@ function drawCurrentCurve(){
 }
 
 function drawAxis(){
-  // count gridlines
   ctx.strokeStyle = 'rgba(74,56,35,0.07)'; ctx.lineWidth = 1;
   ctx.fillStyle = 'rgba(74,56,35,0.55)'; ctx.font = "11px 'IBM Plex Mono',monospace"; ctx.textAlign = 'right';
   for(const f of [0.25,0.5,0.75,1.0]){
@@ -374,7 +447,6 @@ function drawAxis(){
     ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W-padR, y); ctx.stroke();
     ctx.fillText(Math.round(YMAX*f), padL-6, y+3);
   }
-  // x axis
   ctx.strokeStyle = 'rgba(74,56,35,0.7)'; ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(padL, baselineY); ctx.lineTo(W-padR, baselineY); ctx.stroke();
   const step = niceStep(2*X_LIMIT/7);
@@ -393,31 +465,38 @@ function drawAxis(){
 function stepAnim(t){
   if(phase === 'walking'){
     const e = t - walkStartT;
-    let k = Math.floor(e/WALK_STEP_MS);
-    let f = (e - k*WALK_STEP_MS)/WALK_STEP_MS;
+    const k = Math.floor(e/WALK_STEP_MS);
+    const f = (e - k*WALK_STEP_MS)/WALK_STEP_MS;
     if(k >= steps){
       phase = 'dropping'; dropStartT = t;
       for(const w of walkers) w.dispX = w.final;
     } else {
-      f = easeInOut(f);
-      for(const w of walkers){ const a = w.cum[k], b = w.cum[k+1]; w.dispX = a + (b-a)*f; }
+      const fe = easeInOut(f);
+      for(const w of walkers){ const a = w.cum[k], b = w.cum[k+1]; w.dispX = a + (b-a)*fe; }
       histFill = 0;
     }
   }
   if(phase === 'dropping'){
-    const p = Math.min(1, (t - dropStartT)/DROP_MS);
-    const pe = easeOutCubic(p);
+    const prog = Math.min(1, (t - dropStartT)/DROP_MS);
+    const pe = easeOutCubic(prog);
     histFill = pe;
     for(const w of walkers) w.dropP = pe;
-    if(p >= 1){ phase = 'done'; histFill = 1; pushGhost(); updateStats(); }
+    if(prog >= 1){
+      phase = 'done'; histFill = 1;
+      for(const pos of positions) allPositions.push(pos);
+      computeStackedHistogram();
+      pushGhost(); updateStats();
+    }
   }
 }
+
 function animate(t){
   stepAnim(t);
   draw();
   if(phase === 'walking' || phase === 'dropping') rafId = requestAnimationFrame(animate);
   else rafId = null;
 }
+
 function pushGhost(){
   ghosts.push({ sig: sigmaTheory(), bw: hist.bw });
   while(ghosts.length > 6) ghosts.shift();
@@ -433,11 +512,46 @@ function startRun(){
   if(reducedMotion){
     phase = 'done'; histFill = 1;
     for(const w of walkers) w.dispX = w.final;
+    for(const pos of positions) allPositions.push(pos);
+    computeStackedHistogram();
     pushGhost(); updateStats(); draw(); return;
   }
   phase = 'walking'; walkStartT = performance.now();
   if(!rafId) rafId = requestAnimationFrame(animate);
 }
+
+function stackRuns(n){
+  if(phase === 'walking' || phase === 'dropping') return;
+  updateParams();
+  let lastPos = null;
+  for(let r=0;r<n;r++){
+    runCount++;
+    const runPos = new Array(N);
+    for(let i=0;i<N;i++){
+      let s = 0;
+      for(let k=0;k<steps;k++){
+        s += mode === 'coin' ? (Math.random()<0.5 ? -1 : 1) : (Math.random()*2 - 1);
+      }
+      runPos[i] = s;
+    }
+    for(const x of runPos) allPositions.push(x);
+    lastPos = runPos;
+  }
+  positions = lastPos;
+  hist = computeHistogram(positions);
+  histFill = 1;
+  phase = 'done';
+  for(let i=0;i<N;i++){
+    walkers[i].final = positions[i];
+    walkers[i].dispX = positions[i];
+    walkers[i].dropP = 1;
+  }
+  computeStackedHistogram();
+  pushGhost();
+  updateStats();
+  draw();
+}
+
 function updateStats(){
   const m = positions.reduce((a,b)=>a+b,0)/N;
   const v = positions.reduce((a,b)=>a+(b-m)*(b-m),0)/N;
@@ -453,28 +567,35 @@ function updateStats(){
   } else {
     const half = mode === 'coin' ? 1 : 0.5;
     const near = positions.filter(p=>Math.abs(p)<=half).length;
-    lab = 'Within \u00B1' + half + ' yd'; val = (100*near/N).toFixed(1) + '%';
+    lab = 'Within ±' + half + ' yd'; val = (100*near/N).toFixed(1) + '%';
   }
   document.getElementById('s-band-l').textContent = lab;
   document.getElementById('s-band').textContent = val;
   document.getElementById('s-runs').textContent = runCount;
 }
+
 function resetIdle(){
+  if(rafId){ cancelAnimationFrame(rafId); rafId = null; }
   ghosts.length = 0;
+  allPositions.length = 0;
+  stackedHist = null;
+  runCount = 0;
   hist = null; histFill = 0; phase = 'idle';
   for(const w of walkers){ w.dispX = w.xj; w.dropP = 0; }
   updateParams();
-  document.getElementById('s-mean').textContent = '\u2014';
-  document.getElementById('s-sd').textContent = '\u2014';
+  document.getElementById('s-mean').textContent = '—';
+  document.getElementById('s-sd').textContent = '—';
   document.getElementById('s-sigma').textContent = sigmaTheory().toFixed(2);
-  document.getElementById('s-band').textContent = '\u2014';
+  document.getElementById('s-band').textContent = '—';
+  document.getElementById('s-runs').textContent = '0';
   draw();
 }
 
 /* ---------- wiring ---------- */
 document.getElementById('runbtn').addEventListener('click', startRun);
 cv.addEventListener('click', startRun);
-document.getElementById('clearbtn').addEventListener('click', ()=>{ ghosts.length = 0; draw(); });
+document.getElementById('run10btn').addEventListener('click', ()=>stackRuns(10));
+document.getElementById('clearbtn').addEventListener('click', resetIdle);
 document.getElementById('stepslider').addEventListener('input', (e)=>{
   steps = +e.target.value;
   document.getElementById('stepval').textContent = steps;
